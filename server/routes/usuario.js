@@ -3,8 +3,11 @@ const app = express();
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const Usuario = require('../models/usuario');
+const { verificaToken, verificaRole } = require('../middlewares/autenticacion');
 
-app.get('/usuario', function(req, res) {
+
+
+app.get('/usuario', [verificaToken, verificaRole], function(req, res) {
 
     let desde = Number(req.query.desde || 0);
     let limite = Number(req.query.limite || 5);
@@ -31,7 +34,7 @@ app.get('/usuario', function(req, res) {
         })
 })
 
-app.post('/usuario', function(req, res) {
+app.post('/usuario', [verificaToken, verificaRole], function(req, res) {
 
     let body = req.body;
 
@@ -60,7 +63,7 @@ app.post('/usuario', function(req, res) {
     })
 })
 
-app.put('/usuario/:id', function(req, res) {
+app.put('/usuario/:id', [verificaToken, verificaRole], function(req, res) {
 
     let id = req.params.id
 
@@ -85,7 +88,7 @@ app.put('/usuario/:id', function(req, res) {
 
 })
 
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id', [verificaToken, verificaRole], function(req, res) {
 
     let id = req.params.id;
     let estado = _.pick(req.body, ['estado']);

@@ -13,7 +13,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
 
 //=================================
-//          PUERTO
+//        BASE DE DATOS
 //=================================
 
 let urlDB;
@@ -27,3 +27,17 @@ if (process.env.NODE_ENV === 'dev') {
 }
 
 process.env.URLDB = urlDB
+
+//=================================
+//     VENCIMIENTO DEL TOKEN
+//=================================
+
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+
+
+//=================================
+//            SEED
+//=================================
+
+
+process.env.SEED = process.env.SEED || 'ELPINACULO';

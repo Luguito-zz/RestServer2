@@ -20,10 +20,10 @@ app.use(bodyParse.json())
 //              Requests
 //==========================================
 
-app.use(require('./routes/usuario'))
+app.use(require('./routes/index'))
 
 
-mongoose.connect(process.env.URLDB, (err, res) => {
+mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err, res) => {
     //'mongodb://cafe-user:123456A@ds227352.mlab.com:27352/cafe1'
     if (err) throw err;
 
