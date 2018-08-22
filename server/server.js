@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
 const bodyParse = require('body-parser');
-
+require('./config/config');
 
 //=========================================
 //Parse application/x-www-form-urlenconded
@@ -19,33 +20,17 @@ app.use(bodyParse.json())
 //              Requests
 //==========================================
 
+app.use(require('./routes/usuario'))
 
-app.get('/usuario', function(req, res) {
-    res.json('Get Usuario');
-})
 
-app.post('/usuario', function(req, res) {
+mongoose.connect(process.env.URLDB, (err, res) => {
+    //'mongodb://cafe-user:123456A@ds227352.mlab.com:27352/cafe1'
+    if (err) throw err;
 
-    let body = req.body;
-
-    res.json({
-        Usuario: body
-    });
+    console.log("Base de datos ONLINE");
 
 })
 
-app.put('/usuario/:id', function(req, res) {
-
-    let id = req.params.id
-
-    res.json({
-        id
-    });
-})
-
-app.delete('/usuario', function(req, res) {
-    res.json('Delete funcionando');
-})
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('Escuchando el puerto 3000');
