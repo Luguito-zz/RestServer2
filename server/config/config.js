@@ -41,3 +41,12 @@ process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
 
 
 process.env.SEED = process.env.SEED || 'ELPINACULO';
+
+
+
+//=================================
+//      Google Client ID
+//=================================
+
+
+process.env.CLIENT_ID = process.env.CLIENT_ID || '729516143969-mls6vjl1gi77slb47n7slpa1k5iiur0i.apps.googleusercontent.com';

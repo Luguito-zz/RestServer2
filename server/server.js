@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParse = require('body-parser');
+const path = require('path');
 require('./config/config');
 
 //=========================================
@@ -16,11 +17,18 @@ app.use(bodyParse.urlencoded({ extended: false }))
 
 app.use(bodyParse.json())
 
+
+
+app.use(express.static(path.resolve(__dirname, '../public')));
+
+
 //==========================================
 //              Requests
 //==========================================
 
 app.use(require('./routes/index'))
+
+
 
 
 mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err, res) => {
